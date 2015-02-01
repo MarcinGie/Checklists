@@ -10,5 +10,5 @@ import Foundation
 
 class ChecklistItem {
     var text = ""
-    var cheched = false
+    var checked = false
 }
