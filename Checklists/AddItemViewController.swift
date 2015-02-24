@@ -10,8 +10,7 @@ import UIKit
 
 protocol AddItemViewControllerDelegate: class {
     func addItemViewControllerDidCancel(controller: AddItemViewController)
-    func addItemViewController(controller: AddItemViewController,
-    didFinishAddingItem item: ChecklistItem)
+    func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem)
 }
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
@@ -42,17 +41,11 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
             
     }
     
-    func textField(textField: UITextField,
-        shouldChangeCharactersInRange range: NSRange,
-        replacementString string: String) -> Bool {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let oldText: NSString = textField.text
-        let newText: NSString = oldText.stringByReplacingCharactersInRange(
-        range, withString: string)
-        if newText.length > 0 {
-        doneBarButton.enabled = true
-    } else {
-        doneBarButton.enabled = false
-        }
+        let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        
+        doneBarButton.enabled = (newText.length > 0)
         return true
     }
 

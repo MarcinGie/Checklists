@@ -69,26 +69,77 @@ class ChecklistsViewController: UITableViewController, AddItemViewControllerDele
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+    override func tableView(tableView: UITableView,
+        numberOfRowsInSection section: Int) -> Int {
+            return items.count
     }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem") as UITableViewCell
-        let label = cell.viewWithTag(1000) as UILabel
-        
-        if indexPath.row % 5 == 0 { label.text = "Walk the dog"
-        } else if indexPath.row % 5 == 1 {
-            label.text = "Brush my teeth"
-        } else if indexPath.row % 5 == 2 {
-            label.text = "Learn iOS development"
-        } else if indexPath.row % 5 == 3 {
-            label.text = "Soccer practice"
-        } else if indexPath.row % 5 == 4 {
-            label.text = "Eat ice cream"
+    
+    func addItemViewController(controller: AddItemViewController,
+        didFinishAddingItem item: ChecklistItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func tableView(tableView: UITableView,
+        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+        forRowAtIndexPath indexPath: NSIndexPath) {
+        // 1
+        items.removeAtIndex(indexPath.row)
+        // 2
+        let indexPaths = [indexPath]
+        tableView.deleteRowsAtIndexPaths(indexPaths,
+        withRowAnimation: .Automatic)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            let item = items[indexPath.row]
+            item.toggleChecked()
+            configureCheckmarkForCell(cell, withChecklistItem: item)
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
+        
+        if item.checked {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
+    }
+    
+    func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
+        let label = cell.viewWithTag(1000) as UILabel
+        label.text = item.text
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem") as UITableViewCell
+            let item = items[indexPath.row]
+            let label = cell.viewWithTag(1000) as UILabel
+            
+            configureTextForCell(cell, withChecklistItem: item)
+            configureCheckmarkForCell(cell, withChecklistItem: item)
+            
         return cell
     }
+
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem") as UITableViewCell
+//        let label = cell.viewWithTag(1000) as UILabel
+//        
+//        if indexPath.row % 5 == 0 { label.text = "Walk the dog"
+//        } else if indexPath.row % 5 == 1 {
+//            label.text = "Brush my teeth"
+//        } else if indexPath.row % 5 == 2 {
+//            label.text = "Learn iOS development"
+//        } else if indexPath.row % 5 == 3 {
+//            label.text = "Soccer practice"
+//        } else if indexPath.row % 5 == 4 {
+//            label.text = "Eat ice cream"
+//        }
+//        return cell
+//    }
     
 }
 
