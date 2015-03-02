@@ -11,8 +11,9 @@ import UIKit
 class ChecklistsViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
     var items: [ChecklistItem]
+    var checklist: Checklist!
     
-    required init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {ś
         items = [ChecklistItem]()
         super.init(coder: aDecoder)
         loadChecklistItems()
@@ -20,7 +21,8 @@ class ChecklistsViewController: UITableViewController, ItemDetailViewControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.rowHeight = 44
+        title = checklist.name
     }
     
     func itemDetailViewControllerDidCancel(controller: ItemDetailViewController) {
