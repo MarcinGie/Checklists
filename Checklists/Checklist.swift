@@ -13,5 +13,6 @@ class Checklist: NSObject {
     init(name: String) {
         self.name = name
         super.init()
+        var items = [ChecklistItem]()
     }
 }
