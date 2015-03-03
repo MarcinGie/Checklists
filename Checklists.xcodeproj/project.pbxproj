@@ -17,6 +17,7 @@
 		D3792E4F1A5D33E0009D711B /* ChecklistsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3792E4E1A5D33E0009D711B /* ChecklistsTests.swift */; };
 		D3D34DCA1AA47C1F00445F75 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D34DC91AA47C1F00445F75 /* AllListsViewController.swift */; };
 		D3D34DCC1AA493E800445F75 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D34DCB1AA493E800445F75 /* Checklist.swift */; };
+		D3DAE7D91AA5B2FA00F72F38 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE7D81AA5B2FA00F72F38 /* ListDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		D3792E4E1A5D33E0009D711B /* ChecklistsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsTests.swift; sourceTree = "<group>"; };
 		D3D34DC91AA47C1F00445F75 /* AllListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		D3D34DCB1AA493E800445F75 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		D3DAE7D81AA5B2FA00F72F38 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				D3792E411A5D33E0009D711B /* LaunchScreen.xib */,
 				D3792E3C1A5D33E0009D711B /* Main.storyboard */,
 				D3792E361A5D33E0009D711B /* Supporting Files */,
+				D3DAE7D81AA5B2FA00F72F38 /* ListDetailViewController.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3792E3B1A5D33E0009D711B /* ChecklistsViewController.swift in Sources */,
+				D3DAE7D91AA5B2FA00F72F38 /* ListDetailViewController.swift in Sources */,
 				CA3132CD1A82A54C00E8A46A /* ItemDetailViewController.swift in Sources */,
 				D3D34DCC1AA493E800445F75 /* Checklist.swift in Sources */,
 				CA7125D01A7C666000CE1A6E /* ChecklistItem.swift in Sources */,

@@ -13,7 +13,7 @@ class ChecklistsViewController: UITableViewController, ItemDetailViewControllerD
     var items: [ChecklistItem]
     var checklist: Checklist!
     
-    required init(coder aDecoder: NSCoder) {ś
+    required init(coder aDecoder: NSCoder) {
         items = [ChecklistItem]()
         super.init(coder: aDecoder)
         loadChecklistItems()
