@@ -10,7 +10,6 @@ import UIKit
 
 class ChecklistsViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
-    var items: [ChecklistItem]
     var checklist: Checklist!
 
     override func viewDidLoad() {
@@ -46,17 +45,17 @@ class ChecklistsViewController: UITableViewController, ItemDetailViewControllerD
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    @IBAction func addItem() {
-        let newRowIndex = items.count
-        let item = ChecklistItem()
-        item.text = "I am a new row"
-        item.checked = true
-        items.append(item)
-        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRowsAtIndexPaths(indexPaths,
-            withRowAnimation: .Automatic)
-    }
+//    @IBAction func addItem() {
+//        let newRowIndex = items.count
+//        let item = ChecklistItem()
+//        item.text = "I am a new row"
+//        item.checked = true
+//        items.append(item)
+//        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
+//        let indexPaths = [indexPath]
+//        tableView.insertRowsAtIndexPaths(indexPaths,
+//            withRowAnimation: .Automatic)
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
