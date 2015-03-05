@@ -14,7 +14,7 @@ protocol ListDetailViewControllerDelegate: class {
     func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist)
 }
 
-class ListDetailViewController: UITableViewController, UITextFieldDelegate, IconPickerViewController {
+class ListDetailViewController: UITableViewController, UITextFieldDelegate, IconPickerViewControllerDelegate {
         @IBOutlet weak var textField: UITextField!
         @IBOutlet weak var doneBarButton: UIBarButtonItem!
         @IBOutlet weak var iconImageView: UIImageView!
@@ -48,9 +48,10 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
         @IBAction func done() {
             if let checklist = checklistToEdit {
                 checklist.name = textField.text
+                checklist.iconName = iconName
                 delegate?.listDetailViewController(self, didFinishEditingChecklist: checklist)
             } else {
-                let checklist = Checklist(name: textField.text)
+                let checklist = Checklist(name: textField.text, iconName: iconName)
                 delegate?.listDetailViewController(self, didFinishAddingChecklist: checklist)
             }
         }
@@ -80,7 +81,8 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
     
     func iconPicker(picker: IconPickerViewController, didPickIcon iconName: String) {
         self.iconName = iconName
-        icon
+        iconImageView.image = UIImage(named: iconName)
+        navigationController?.popToRootViewControllerAnimated(true)
     }
     
         
