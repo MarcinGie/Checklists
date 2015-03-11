@@ -18,9 +18,13 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var shouldRemindSwitch: UISwitch!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     var itemToEdit: ChecklistItem?
     weak var delegate: ItemDetailViewControllerDelegate?
+    var dueDate = NSDate()
+    var datePickerVisible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,20 +35,29 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             title = "Edit item"
             textField.text = item.text
             self.doneBarButton.enabled = true
+            shouldRemindSwitch.on = item.shouldRemind
+            dueDate = item.dueDate
         }
+        
+        updateDueDateLabel()
     }
         
     @IBAction func cancel() {
         delegate?.itemDetailViewControllerDidCancel(self)
     }
+    
     @IBAction func done() {
         if let item = itemToEdit {
             item.text = textField.text
+            item.shouldRemind = shouldRemindSwitch.on
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(self, didFinishEditingItem: item)
         } else {
             let item = ChecklistItem()
             item.text = textField.text
             item.checked = false
+            item.shouldRemind = shouldRemindSwitch.on
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(self, didFinishAddingItem: item)
         }
     }
@@ -66,6 +79,19 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         
         doneBarButton.enabled = (newText.length > 0)
         return true
+    }
+    
+    func updateDueDateLabel() {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .ShortStyle
+        dueDateLabel.text = formatter.stringFromDate(dueDate)
+    }
+    
+    func showDatePicker() {
+        datePickerVisible = true
+        let indexPathDatePicker = NSIndexPath(forRow: 2, inSection: 1)
+        tableView.insertRowsAtIndexPaths([indexPathDatePicker], withRowAnimation: .Fade)
     }
 
 }
